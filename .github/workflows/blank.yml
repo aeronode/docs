@@ -1,0 +1,54 @@
+# This is a workflow to build and deploy an MkDocs site using GitHub Actions and Cloudflare Pages
+
+name: Build and Deploy MkDocs Site
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build-and-deploy"
+  build-and-deploy:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v4
+
+      # Set up Python environment
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x' # Specify the Python version
+
+      # Install dependencies
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install mkdocs mkdocs-material # Add other necessary plugins if needed
+
+      # Build the MkDocs site
+      - name: Build site
+        run: mkdocs build
+
+      # Commit and push the site to the 'cloudflare-pages' branch
+      - name: Commit and push site to cloudlare-pages branch
+        run: |
+          git config --global user.name 'GitHub Actions'
+          git config --global user.email 'actions@github.com'
+          git checkout -b cloudflare-pages
+          git add -f site/
+          git commit -m "Deploy MkDocs site to cloudflare-pages branch"
+          git push origin cloudflare-pages --force
+
+# Note: After setting this up, configure your Cloudflare Pages project to build from the 'gh-pages' branch.
