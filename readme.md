@@ -1,2 +1,2 @@
 # AeroNode Docs
-Documentation for [AeroNode]("https://aeronode.akxcix.com")
+Documentation for [AeroNode](https://aeronode.akxcix.com)
