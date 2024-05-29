@@ -1,5 +1,5 @@
 # How To Do X
 
-How do i do:
+How to do:
 
 - [HIL Simulation](./hil-simulation.md)
