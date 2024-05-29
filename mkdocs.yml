@@ -4,7 +4,7 @@ nav:
   - 'installation.md'
   - 'how-to-do-x/index.md'
 repo_url: https://github.com/akxcix/aeronode-docs/
-edit_uri_template: '{path_noext}/_edit'
+edit_uri: blob/main/docs/
 theme:
   name: readthedocs
   locale: en
