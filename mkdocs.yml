@@ -32,3 +32,11 @@ theme:
   font:
     text: Roboto
     code: Roboto Mono
+
+plugins:
+  - material-plausible
+
+extra:
+  analytics:
+    provider: plausible
+    domain: aeronode.akxcix.com
